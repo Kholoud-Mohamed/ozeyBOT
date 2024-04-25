@@ -1,4 +1,6 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:mapfeature_project/movies/moviesmodel.dart';
 import 'package:mapfeature_project/movies/api.dart';
 
@@ -15,95 +17,227 @@ class MovieDetailsScreen extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Movie Details'),
+              title: const Text('Movie Details'),
             ),
-            body: Center(
+            body: const Center(
               child: CircularProgressIndicator(),
             ),
           );
         } else if (snapshot.hasError) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Movie Details'),
+              title: const Text('Movie Details'),
             ),
             body: Center(
-              child: Text('Error: ${snapshot.error}'),
+              child: Text(
+                'Error: ${snapshot.error}',
+                style: const TextStyle(color: Colors.white),
+              ),
             ),
           );
         } else {
           final movieDetails = snapshot.data!;
           return Scaffold(
-            appBar: AppBar(
-              title: Text(movieDetails.title),
-            ),
-            body: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Banner Image
-                  Container(
-                    height: 200,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(movieDetails.bannerUrl),
-                        fit: BoxFit.cover,
+            body: Stack(
+              children: [
+                // Background Image
+                Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(movieDetails.posterUrl),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+
+                // Blurred Bottom Half
+                Positioned.fill(
+                  bottom: null,
+                  top: MediaQuery.of(context).size.height / 2,
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 10,
+                      sigmaY: 10,
+                    ),
+                    child: Container(
+                      color: Colors.black.withOpacity(0.3),
+                    ),
+                  ),
+                ),
+
+                // Movie Details
+                SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Movie Poster
+                      Container(
+                        height: 450, // Adjust the height as needed
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(movieDetails.posterUrl),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        // child: Column(
+                        //   mainAxisAlignment: MainAxisAlignment.end,
+                        //   crossAxisAlignment: CrossAxisAlignment.start,
+                        //   children: [
+                        //     Padding(
+                        //       padding: const EdgeInsets.all(5.0),
+                        //       child: Text(
+                        //         movieDetails.title,
+                        //         style: const TextStyle(
+                        //           fontSize: 22,
+                        //           fontFamily: "langar",
+                        //           fontWeight: FontWeight.w700,
+                        //           color: Colors.white,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //     Padding(
+                        //       padding: const EdgeInsets.all(5.0),
+                        //       child: RatingBar.builder(
+                        //         initialRating: movieDetails.rating / 2,
+                        //         minRating: 0,
+                        //         direction: Axis.horizontal,
+                        //         allowHalfRating: true,
+                        //         itemCount: 5,
+                        //         itemSize: 30,
+                        //         itemBuilder: (context, _) => const Icon(
+                        //           Icons.star,
+                        //           color: Colors.amber,
+                        //         ),
+                        //         onRatingUpdate: (_) {}, // Placeholder function
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-
-                  // Movie Overview
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Overview:',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 6.0, horizontal: 5),
+                            child: Text(
+                              movieDetails.title,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontFamily: "langar",
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: RatingBar.builder(
+                              initialRating: movieDetails.rating / 2,
+                              minRating: 0,
+                              direction: Axis.horizontal,
+                              allowHalfRating: true,
+                              itemCount: 5,
+                              itemSize: 30,
+                              itemBuilder: (context, _) => const Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                              ),
+                              onRatingUpdate: (_) {}, // Placeholder function
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: Text(
-                      movieDetails.overview,
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
-                  // Movie Genres
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Genres: ${movieDetails.genres.join(", ")}',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  SizedBox(height: 20),
+                      // Movie Overview
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          'Overview:',
+                          style: TextStyle(
+                            fontFamily: "langar",
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Text(
+                          movieDetails.overview,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
 
-                  // Movie Rating
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Rating: ${movieDetails.rating}',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  SizedBox(height: 20),
+                      // Movie Genres
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          ' ${movieDetails.genres.join(", ")}',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "langar",
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
 
-                  // Movie Duration
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Duration: ${movieDetails.duration}',
-                      style: TextStyle(fontSize: 16),
-                    ),
+                      // Movie Duration
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Duration: ${movieDetails.duration}',
+                          style: const TextStyle(
+                            fontFamily: "langar",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+
+                      // Release Date
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Release Date: ',
+                              style: TextStyle(
+                                fontFamily: "langar",
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                            Text(
+                              movieDetails.releaseDate,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                    ],
                   ),
-                  SizedBox(height: 20),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         }

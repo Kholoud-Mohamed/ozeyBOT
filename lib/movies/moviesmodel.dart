@@ -36,10 +36,11 @@ class MovieDetails {
   final String overview;
   final String releaseDate;
   final String posterPath;
-  final String bannerUrl; // Add bannerUrl property
-  final List<String> genres; // Add genres property
-  final double rating; // Add rating property
-  final String duration; // Add duration property
+  final String bannerUrl;
+  final List<String> genres;
+  final double rating;
+  final String duration;
+  final String posterUrl; // Add posterUrl property
 
   MovieDetails({
     required this.id,
@@ -51,10 +52,10 @@ class MovieDetails {
     required this.genres,
     required this.rating,
     required this.duration,
+    required this.posterUrl, // Initialize posterUrl property
   });
 
   factory MovieDetails.fromMap(Map<String, dynamic> map) {
-    // Parse genre names
     List<String> genres = [];
     if (map['genres'] != null) {
       genres = List<String>.from(map['genres'].map((genre) => genre['name']));
@@ -70,6 +71,7 @@ class MovieDetails {
       genres: genres,
       rating: map['vote_average'].toDouble(),
       duration: '${map['runtime']} min',
+      posterUrl: "https://image.tmdb.org/t/p/original/${map['poster_path']}",
     );
   }
 }

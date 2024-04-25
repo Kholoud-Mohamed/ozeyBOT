@@ -1,56 +1,52 @@
-import 'dart:async';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
+// import 'package:hive/hive.dart';
+// import 'package:path_provider/path_provider.dart' as path_provider;
 
-class DatabaseHelper {
-  static final DatabaseHelper _instance = DatabaseHelper._internal();
+// class DatabaseHelper {
+//   static late Box<Map<String, dynamic>> _messagesBox;
 
-  factory DatabaseHelper() => _instance;
+//   static Future<void> initialize() async {
+//     final appDocumentDir =
+//         await path_provider.getApplicationDocumentsDirectory();
+//     Hive.init(appDocumentDir.path);
+//     Hive.registerAdapter<ChatMessage>(ChatMessageAdapter());
+//     _messagesBox = await Hive.openBox<Map<String, dynamic>>('messages');
+//   }
 
-  static Database? _database;
+//   Future<List<Map<String, dynamic>>> getMessages() async {
+//     return _messagesBox.values.toList();
+//   }
 
-  DatabaseHelper._internal();
+//   Future<void> insertMessage(Map<String, dynamic> message) async {
+//     await _messagesBox.add(message);
+//   }
+// }
 
-  Future<Database> get database async {
-    if (_database != null) return _database!;
+// @HiveType(typeId: 0)
+// class ChatMessage {
+//   @HiveField(0)
+//   late String text;
 
-    _database = await initDatabase();
-    return _database!;
-  }
+//   @HiveField(1)
+//   late DateTime timestamp;
 
-  Future<Database> initDatabase() async {
-    String path = join(await getDatabasesPath(), 'your_database_name.db');
+//   ChatMessage({required this.text, required this.timestamp});
+// }
 
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: (db, version) async {
-        // Create your database tables here
-        await db.execute('''
-         CREATE TABLE messages(
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  message TEXT,
-  timestamp INTEGER,
-  isUserMessage BOOLEAN,
-  userId TEXT
-);
-        ''');
-      },
-    );
-  }
+// class ChatMessageAdapter extends TypeAdapter<ChatMessage> {
+//   @override
+//   final int typeId = 0;
 
-  Future<int> insertMessage(Map<String, dynamic> message) async {
-    final db = await database;
-    return await db.insert('messages', {
-      'message': message['message'],
-      'timestamp': message['timestamp'],
-      'isUserMessage': message['isUserMessage'] == 1 ? true : false,
-      'userId': message['userId'],
-    });
-  }
+//   @override
+//   ChatMessage read(BinaryReader reader) {
+//     return ChatMessage(
+//       text: reader.readString(),
+//       timestamp: DateTime.parse(reader.readString() ?? ""),
+//     );
+//   }
 
-  Future<List<Map<String, dynamic>>> getMessages() async {
-    final db = await database;
-    return await db.query('messages');
-  }
-}
+//   @override
+//   void write(BinaryWriter writer, ChatMessage obj) {
+//     writer.writeString(obj.text);
+//     writer.writeString(obj.timestamp.toIso8601String());
+//   }
+// }

@@ -110,9 +110,8 @@ class _LogInScreenState extends State<LogInScreen> {
                           onTap: () async {
                             if (email != null) {
                               try {
-                                // Call the forgetPassword function with the entered email
                                 await forgetPassword(email!);
-                                // Navigate to the ResetPasswordScreen
+
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -120,16 +119,12 @@ class _LogInScreenState extends State<LogInScreen> {
                                         ResetPasswordScreen(email: email!),
                                   ),
                                 );
-                                // showSnackBar(context,
-                                //     'Password reset instructions sent to your email');
                               } catch (e) {
-                                // Handle any errors, such as network issues or invalid email
                                 print(e.toString());
                                 showSnackBar(
                                     context, 'Failed to reset password');
                               }
                             } else {
-                              // Handle the case where email is null
                               showSnackBar(context, 'Please enter your email');
                             }
                           },
@@ -176,7 +171,6 @@ class _LogInScreenState extends State<LogInScreen> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                // Navigate to the sign-up screen
                                 Navigator.pushNamed(context, 'signup');
                               },
                               child: const Text(
@@ -227,7 +221,6 @@ class _LogInScreenState extends State<LogInScreen> {
         showSnackBar(context, 'Email address not found');
       }
     } catch (e) {
-      // Handle network errors
       print(e.toString());
       showSnackBar(context, 'Failed to connect to the server');
     }
@@ -253,13 +246,11 @@ class _LogInScreenState extends State<LogInScreen> {
         String userEmail = responseData['email'];
         String token = responseData['token'];
 
-        // Here you can use the user information as needed
         print('User ID: $userId');
         print('Name: $name');
         print('Email: $userEmail');
         print('Token: $token');
 
-        // Example: Navigate to the home screen with userId
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(

@@ -26,7 +26,6 @@ class _MoviesScreenState extends State<MoviesScreen> {
 
   void openMovieDetails(BuildContext context, int movieId) async {
     try {
-      // Navigate to MovieDetailsScreen with movieId
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -40,31 +39,46 @@ class _MoviesScreenState extends State<MoviesScreen> {
     }
   }
 
+  Widget _labelText(String labelText) {
+    return Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: Text(
+        labelText,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 18.0,
+          fontFamily: 'Langar',
+          color: Color(0xff1F5D6B),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black12,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.black12,
+        backgroundColor: const Color.fromARGB(31, 255, 255, 255),
         foregroundColor: Colors.white,
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-        title: const Text("Show Spot"),
+        title: const Text(
+          "Movies",
+          style: TextStyle(
+            fontSize: 25,
+            fontFamily: 'Langar',
+            color: Color(0xff1F5D6B),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search_rounded)),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
-        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(6.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Upcoming',
-                style: TextStyle(color: Colors.white),
-              ),
+              _labelText('Upcoming'),
               //Carousel
               FutureBuilder<List<Movie>>(
                 future: upcomingMovies,
@@ -103,11 +117,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                 },
               ),
 
-              // Popular Movies
-              const Text(
-                'Popular',
-                style: TextStyle(color: Colors.white),
-              ),
+              _labelText('Popular'),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 20),
                 height: 250,
@@ -143,12 +153,12 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Text(
                                   movie.title,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
+                                  style: const TextStyle(
+                                    color: Color(0xff1F5D6B),
                                     fontSize: 16,
                                   ),
                                 ),
@@ -162,11 +172,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
                 ),
               ),
 
-              // Top Rated
-              const Text(
-                'Top Rated',
-                style: TextStyle(color: Colors.white),
-              ),
+              _labelText('Top Rated'),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 20),
                 height: 250,
@@ -202,12 +208,12 @@ class _MoviesScreenState extends State<MoviesScreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 Text(
                                   movie.title,
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
+                                  style: const TextStyle(
+                                    color: Color(0xff1F5D6B),
                                     fontSize: 16,
                                   ),
                                 ),

@@ -14,28 +14,25 @@ import 'package:mapfeature_project/screens/ChatScreen.dart';
 import 'package:mapfeature_project/screens/LogInScreen.dart';
 import 'package:mapfeature_project/screens/SignUpScreen.dart';
 import 'package:mapfeature_project/Todo/todo.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
 int userScore = 0;
 int cognitiveScore = 0;
 int somaticScore = 0;
-late Box<Map<String, dynamic>> _messagesBox; // Hive box for storing messages
+late Box<Map<String, dynamic>> _messagesBox;
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
-  await Hive.initFlutter(); // Initialize Hive
-  _messagesBox =
-      await Hive.openBox<Map<String, dynamic>>('messages'); // Open Hive box
+  WidgetsFlutterBinding.ensureInitialized();
+  final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
+  Hive.init(appDocumentDir.path);
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
   final String? token;
   final String? email;
-  final String? userId; // Add userId here
-  final String? userName; // Add userName here
+  final String? userId;
+  final String? userName;
   const MyApp({Key? key, this.token, this.userId, this.userName, this.email})
       : super(key: key);
   @override

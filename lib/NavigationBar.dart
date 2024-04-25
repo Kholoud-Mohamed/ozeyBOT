@@ -37,11 +37,13 @@ class _NavigationTabsState extends State<NavigationTabs> {
     super.initState();
     listScreens = [
       HOMEScreen(
-        userId: widget.userId ?? '',
         onMoodSelected: widget.onMoodSelected,
         moodRecordings: widget.moodRecordings,
         selectedMoodPercentage: widget.selectedMoodPercentage,
+        email: widget.email,
         token: widget.token ?? '',
+        name: widget.name,
+        userId: widget.userId ?? '',
       ),
       MapScreen(token: widget.token ?? ''), // Pass the token here
       const Notifications(),

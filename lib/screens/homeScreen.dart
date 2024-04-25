@@ -6,8 +6,6 @@ import 'package:mapfeature_project/moodTracer/mood_selector.dart';
 import 'package:mapfeature_project/moodTracer/sentiment.dart';
 import 'package:mapfeature_project/screens/ChatScreen.dart';
 import 'package:mapfeature_project/moodTracer/graph.dart';
-import 'package:mapfeature_project/Todo/todo.dart';
-
 
 class HOMEScreen extends StatefulWidget {
   final String userId;
@@ -15,6 +13,9 @@ class HOMEScreen extends StatefulWidget {
   final Function(SentimentRecording) onMoodSelected;
   final double selectedMoodPercentage;
   final String token;
+  final String? email;
+  final String? username;
+  final String? name;
 
   HOMEScreen({
     required this.userId,
@@ -22,6 +23,9 @@ class HOMEScreen extends StatefulWidget {
     required this.onMoodSelected,
     required this.selectedMoodPercentage,
     required this.token,
+    this.email,
+    this.username,
+    this.name,
   });
 
   @override
@@ -35,68 +39,8 @@ class _HOMEScreenState extends State<HOMEScreen> {
   @override
   void initState() {
     super.initState();
-    _fetchUserProfile(int.parse(widget.userId)).then((profileData) {
-      if (profileData != null) {
-        setState(() {
-          userName = profileData['name']; // Assign the user's name
-        });
-      }
-    });
+    userName = widget.name ?? "";
   }
-
-  Future<Map<String, dynamic>?> _fetchUserProfile(int userId) async {
-    try {
-      final response = await http.get(
-        Uri.parse(
-            'https://mental-health-ef371ab8b1fd.herokuapp.com/api/users/$userId'),
-        headers: <String, String>{
-          'Accept': 'application/json',
-          'Authorization': 'Bearer ${widget.token}',
-        },
-      );
-
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        return data;
-      } else {
-        print('Failed to fetch user profile: ${response.statusCode}');
-        return null;
-      }
-    } catch (e) {
-      print('Error fetching user profile: $e');
-      return null;
-    }
-  }
-
-  //  Future<void> getdata() async {
-  //   try {
-  //     final response = await http.post(
-  //       Uri.parse('https://mental-health-ef371ab8b1fd.herokuapp.com/api/login'),
-  //       headers: <String, String>{
-  //         'Content-Type': 'application/json',
-  //       },
-
-  //     );
-
-  //     if (response.statusCode == 200) {
-  //       Map<String, dynamic> responseData = jsonDecode(response.body);
-  //       String userId = responseData['id'].toString();
-  //       String name = responseData['Name'];
-  //       // String userEmail = responseData['email'];
-  //       String token = responseData['token'];
-
-  //       // Here you can use the user information as needed
-  //       print('User ID: $userId');
-  //       print('Name: $name');
-  //       // print('Email: $userEmail');
-  //       print('Token: $token');
-
-  //       // Example: Navigate to the home screen with userId
-  //     }}catch (e) {
-  //     print(e.toString());
-  //   //   showSnackBar(context, 'Failed to connect to the server');
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -178,8 +122,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
                 left: 30,
                 child: MoodSelector(
                   onSelected: widget.onMoodSelected,
-                  updateSelectedMood:
-                      _updateSelectedMood, // Pass updateSelectedMood here
+                  updateSelectedMood: _updateSelectedMood,
                 ),
               ),
               Padding(
@@ -220,7 +163,6 @@ class _HOMEScreenState extends State<HOMEScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _labelText('AI Friend'),
-
         GestureDetector(
           onTap: () {
             Navigator.push(
@@ -228,7 +170,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
               MaterialPageRoute(
                 builder: (context) => ChatBot(
                   userId: widget.userId,
-                  userName: userName, // Pass the userName to ChatBot
+                  userName: userName,
                 ),
               ),
             );
@@ -263,10 +205,8 @@ class _HOMEScreenState extends State<HOMEScreen> {
             ),
           ),
         ),
-
         const SizedBox(height: 10),
-
-        _labelText('SELF TEST'), // Add spacing between label and cards
+        _labelText('SELF TEST'),
         GestureDetector(
           onTap: () {
             Navigator.pushNamed(context, 'test');
@@ -302,7 +242,6 @@ class _HOMEScreenState extends State<HOMEScreen> {
             ),
           ),
         ),
-
         const SizedBox(height: 10),
         _labelText('SELF CARE KIT'),
         GestureDetector(
@@ -401,7 +340,6 @@ class _HOMEScreenState extends State<HOMEScreen> {
             ),
           ),
         ),
-        // Add more sets as needed
       ],
     );
   }
