@@ -41,6 +41,7 @@ class MovieDetails {
   final double rating;
   final String duration;
   final String posterUrl; // Add posterUrl property
+  // final String videoUrl;
 
   MovieDetails({
     required this.id,
@@ -52,7 +53,8 @@ class MovieDetails {
     required this.genres,
     required this.rating,
     required this.duration,
-    required this.posterUrl, // Initialize posterUrl property
+    required this.posterUrl,
+    // required this.videoUrl, // Initialize posterUrl property
   });
 
   factory MovieDetails.fromMap(Map<String, dynamic> map) {
@@ -60,6 +62,12 @@ class MovieDetails {
     if (map['genres'] != null) {
       genres = List<String>.from(map['genres'].map((genre) => genre['name']));
     }
+    // // Extract the video URL from the API response
+    // String videoUrl = "";
+    // if (map['videos'] != null && map['videos']['results'] != null) {
+    //   videoUrl =
+    //       "https://www.youtube.com/watch?v=${map['videos']['results'][0]['key']}";
+    // }
 
     return MovieDetails(
       id: map['id'],
@@ -72,6 +80,7 @@ class MovieDetails {
       rating: map['vote_average'].toDouble(),
       duration: '${map['runtime']} min',
       posterUrl: "https://image.tmdb.org/t/p/original/${map['poster_path']}",
+      // videoUrl: videoUrl,
     );
   }
 }
