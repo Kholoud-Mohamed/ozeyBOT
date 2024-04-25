@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:mapfeature_project/helper/constants.dart';
 import 'package:mapfeature_project/moodTracer/mood_selector.dart';
 import 'package:mapfeature_project/moodTracer/sentiment.dart';
 import 'package:mapfeature_project/screens/ChatScreen.dart';
@@ -70,7 +71,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
                       topLeft: Radius.circular(80.0),
                     ),
                   ),
-                  color: const Color(0xffC4DEE4),
+                  color: primaryColor,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -87,7 +88,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18.0,
-                                fontFamily: 'Langar',
+                                fontFamily: primaryFont,
                               ),
                             ),
                             const Text(
@@ -95,7 +96,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15,
-                                  fontFamily: 'Langar',
+                                  fontFamily: primaryFont,
                                   color: Colors.white),
                             ),
                           ],
@@ -151,7 +152,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 18.0,
-          fontFamily: 'Langar',
+          fontFamily: primaryFont,
           color: Color(0xff1F5D6B),
         ),
       ),
@@ -179,7 +180,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
             elevation: 5,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: const Color(0xffC4DEE4),
+            color: primaryColor,
             child: Row(
               children: [
                 Padding(
@@ -195,7 +196,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
                   child: Text(
                     'How was your Day ?',
                     style: TextStyle(
-                        fontFamily: 'Langar',
+                        fontFamily: primaryFont,
                         fontSize: 18,
                         fontWeight: FontWeight.w800,
                         color: Colors.white),
@@ -215,7 +216,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
             elevation: 5,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: const Color(0xffC4DEE4),
+            color: primaryColor,
             child: Row(
               children: [
                 const Padding(
@@ -223,7 +224,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
                   child: Text(
                     'Beck Depression Test',
                     style: TextStyle(
-                        fontFamily: 'Langar',
+                        fontFamily: primaryFont,
                         fontSize: 18,
                         fontWeight: FontWeight.w800,
                         color: Colors.white),
@@ -252,7 +253,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
             elevation: 5,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: const Color(0xffC4DEE4),
+            color: primaryColor,
             child: Row(
               children: [
                 Padding(
@@ -273,13 +274,13 @@ class _HOMEScreenState extends State<HOMEScreen> {
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,
-                            fontFamily: 'Langar',
+                            fontFamily: primaryFont,
                             color: Colors.white),
                       ),
                       Text(
                         'Recommendations',
                         style: TextStyle(
-                            fontFamily: 'Langar',
+                            fontFamily: primaryFont,
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
@@ -287,7 +288,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
                       Text(
                         'To Ease Your Mind',
                         style: TextStyle(
-                            fontFamily: 'Langar',
+                            fontFamily: primaryFont,
                             fontSize: 18,
                             fontWeight: FontWeight.w800,
                             color: Colors.white),
@@ -309,7 +310,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
             elevation: 5,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: const Color(0xffC4DEE4),
+            color: primaryColor,
             child: Row(
               children: [
                 Padding(
@@ -328,7 +329,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
                       Text(
                         'Time Table Companion',
                         style: TextStyle(
-                            fontFamily: 'Langar',
+                            fontFamily: primaryFont,
                             fontSize: 18,
                             fontWeight: FontWeight.w800,
                             color: Colors.white),
