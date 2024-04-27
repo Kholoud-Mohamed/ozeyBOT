@@ -63,13 +63,13 @@ class MoodSelectorState extends State<MoodSelector> {
     return new Card(
       shape: const ContinuousRectangleBorder(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(200),
-          bottomRight: Radius.circular(200),
-          topLeft: Radius.circular(200),
-          topRight: Radius.circular(200),
+          bottomLeft: Radius.circular(50),
+          bottomRight: Radius.circular(50),
+          topLeft: Radius.circular(50),
+          topRight: Radius.circular(50),
         ),
       ),
-      color: const Color.fromARGB(255, 217, 224, 226),
+      color: Color(0xffEFF5F7),
       child: Padding(
         padding: const EdgeInsets.all(1.0),
         child: Column(

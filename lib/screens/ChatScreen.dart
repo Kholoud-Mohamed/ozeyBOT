@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mapfeature_project/helper/constants.dart';
 
 class ChatBot extends StatefulWidget {
   final String? userId;
@@ -61,7 +62,7 @@ class _ChatBotState extends State<ChatBot> {
     });
   }
 
-  Future<String> _callAIModelAPI(String message, String userId) async {
+  Future<String> _callAIModelAPI(String message, String userName) async {
     final url =
         Uri.parse('https://nationally-precise-stork.ngrok-free.app/chat');
     try {
@@ -69,7 +70,7 @@ class _ChatBotState extends State<ChatBot> {
         url,
         body: {
           'user_input': message,
-          'user_id': userId,
+          'user_id': widget.userName,
         },
       );
 
@@ -140,7 +141,40 @@ class _ChatBotState extends State<ChatBot> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Soothe Bot'),
+        title: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: primaryColor,
+                image: const DecorationImage(
+                  image: AssetImage(
+                      'images/photo_2024-01-17_04-23-53-removebg-preview.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            const SizedBox(width: 6),
+            const Text(
+              'Ozey Bot',
+              style: TextStyle(
+                fontFamily: AlegreyaFont,
+                fontWeight: FontWeight.w900,
+                fontSize: 20,
+              ),
+            ),
+          ],
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1.0),
+          child: Container(
+            color: const Color.fromARGB(255, 137, 141, 141),
+            height: 1.0,
+            width: 330,
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -159,8 +193,7 @@ class _ChatBotState extends State<ChatBot> {
                         const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color:
-                          isUserMessage ? Colors.blueAccent : Colors.grey[200],
+                      color: isUserMessage ? primaryColor : Colors.grey[200],
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(isUserMessage ? 16 : 0),
                         topRight: Radius.circular(isUserMessage ? 0 : 16),
@@ -171,37 +204,17 @@ class _ChatBotState extends State<ChatBot> {
                     child: Text(
                       message['message'] as String,
                       style: TextStyle(
-                        color: isUserMessage ? Colors.white : Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                          color:
+                              isUserMessage ? Color(0xff636363) : Colors.black,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 15),
                     ),
                   ),
                 );
               },
             ),
           ),
-          _isBotTyping
-              ? const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 24,
-                        height: 24,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 3,
-                        ),
-                      ),
-                      SizedBox(width: 8),
-                      Text(
-                        'Typing...',
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                      ),
-                    ],
-                  ),
-                )
-              : Container(),
+          _isBotTyping ? TypingIndicator() : Container(),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -209,17 +222,21 @@ class _ChatBotState extends State<ChatBot> {
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.grey,
-                          blurRadius: 2,
-                          spreadRadius: 2,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 2,
+                            spreadRadius: 2,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                        border: Border(
+                          top: BorderSide(
+                              width: 1.0,
+                              color: const Color.fromARGB(255, 0, 0, 0)!),
+                        )),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextField(
@@ -244,6 +261,47 @@ class _ChatBotState extends State<ChatBot> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class TypingIndicator extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          width: 40,
+          height: 20,
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              DotIndicator(),
+              DotIndicator(),
+              DotIndicator(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class DotIndicator extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 8,
+      height: 8,
+      decoration: BoxDecoration(
+        color: Colors.grey[400],
+        shape: BoxShape.circle,
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mapfeature_project/NavigationBar.dart';
+import 'package:mapfeature_project/helper/constants.dart';
 import 'package:mapfeature_project/helper/show_snack_bar.dart';
 import 'package:mapfeature_project/moodTracer/sentiment.dart';
 import 'package:mapfeature_project/screens/resetpassScreen.dart';
@@ -64,7 +65,7 @@ class _LogInScreenState extends State<LogInScreen> {
                               child: Text(
                                 'Hello !',
                                 style: TextStyle(
-                                  fontFamily: 'Langar',
+                                  fontFamily: nunitoFont,
                                   fontSize: 29,
                                   color: Color.fromARGB(255, 128, 133, 134),
                                 ),
@@ -73,7 +74,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             Text(
                               'WELCOME BACK',
                               style: TextStyle(
-                                fontFamily: 'Langar',
+                                fontFamily: nunitoFont,
                                 fontSize: 29,
                                 color: Color(0xff1F5D6B),
                               ),
@@ -131,7 +132,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           child: const Text(
                             'Forgot Password ? ',
                             style: TextStyle(
-                              fontFamily: 'Langar',
+                              fontFamily: nunitoFont,
                               fontSize: 18,
                               color: Color(0xff1F5D6B),
                             ),
@@ -165,7 +166,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             const Text(
                               "Don't have an account?",
                               style: TextStyle(
-                                fontFamily: 'Langar',
+                                fontFamily: latoFont,
                                 color: Color.fromARGB(255, 136, 136, 136),
                               ),
                             ),
@@ -176,7 +177,7 @@ class _LogInScreenState extends State<LogInScreen> {
                               child: const Text(
                                 ' Sign up',
                                 style: TextStyle(
-                                  fontFamily: 'Langar',
+                                  fontFamily: latoFont,
                                   color: Color(0xff1F5D6B),
                                 ),
                               ),

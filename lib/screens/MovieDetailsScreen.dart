@@ -74,7 +74,7 @@ class MovieDetailsScreen extends StatelessWidget {
                     children: [
                       // Movie Poster
                       Container(
-                        height: 450, // Adjust the height as needed
+                        height: 450,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           image: DecorationImage(
@@ -82,40 +82,6 @@ class MovieDetailsScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        // child: Column(
-                        //   mainAxisAlignment: MainAxisAlignment.end,
-                        //   crossAxisAlignment: CrossAxisAlignment.start,
-                        //   children: [
-                        //     Padding(
-                        //       padding: const EdgeInsets.all(5.0),
-                        //       child: Text(
-                        //         movieDetails.title,
-                        //         style: const TextStyle(
-                        //           fontSize: 22,
-                        //           fontFamily: "langar",
-                        //           fontWeight: FontWeight.w700,
-                        //           color: Colors.white,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //     Padding(
-                        //       padding: const EdgeInsets.all(5.0),
-                        //       child: RatingBar.builder(
-                        //         initialRating: movieDetails.rating / 2,
-                        //         minRating: 0,
-                        //         direction: Axis.horizontal,
-                        //         allowHalfRating: true,
-                        //         itemCount: 5,
-                        //         itemSize: 30,
-                        //         itemBuilder: (context, _) => const Icon(
-                        //           Icons.star,
-                        //           color: Colors.amber,
-                        //         ),
-                        //         onRatingUpdate: (_) {}, // Placeholder function
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,

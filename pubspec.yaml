@@ -130,9 +130,39 @@ flutter:
         - asset: fonts/Langar-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-  #   - family: Trajan Pro
+    - family: Alegreya
+      fonts:
+        - asset: fonts/Alegreya-Regular.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+    - family: Inter
+      fonts:
+       - asset: fonts/Inter-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+    - family: Nunito Sans
+      fonts:
+        - asset: fonts/NunitoSans_7pt_Expanded-Regular.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+    - family: Lato
+      fonts:
+        - asset: fonts/Lato-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Alegreya
   #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/Alegreya-Regular.ttf
+  # #       - asset: fonts/TrajanPro_Bold.ttf
+  # #         weight: 700
+  #   - family: Inter
+  #     fonts:
+  #      - asset: fonts/Inter-Regular.ttf
+  # #       - asset: fonts/Schyler-Italic.ttf
+  # #         style: italic
+  #   - family: Nunito Sans
+  #     fonts:
+  #       - asset: fonts/NunitoSans_7pt_Expanded-Regular.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

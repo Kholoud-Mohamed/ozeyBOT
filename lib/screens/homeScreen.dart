@@ -1,5 +1,6 @@
 // HOMEScreen file
 import 'dart:convert';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:mapfeature_project/helper/constants.dart';
@@ -47,97 +48,96 @@ class _HOMEScreenState extends State<HOMEScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-        padding: EdgeInsets.only(top: 0),
+        padding: const EdgeInsets.only(top: 0),
         children: [
-          Stack(
-            children: [
-              Container(
-                height: 100.0,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.white, Colors.white],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 0),
-                child: Card(
-                  elevation: 4.0,
-                  shape: const ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(80.0),
-                      topLeft: Radius.circular(80.0),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 0),
+                  child: Card(
+                    elevation: 6.0,
+                    shape: const ContinuousRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(80.0),
+                        topLeft: Radius.circular(80.0),
+                      ),
+                    ),
+                    color: primaryColor,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 8.0,
+                            top: 20.0,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Hello $userName,',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0,
+                                    fontFamily: interFont, //inter
+                                    color: Colors.white),
+                              ),
+                              const Text(
+                                'How are you feeling today ? ',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                    fontFamily: interFont, //inter
+                                    color: Colors.white),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Align(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                              top: 5,
+                            ),
+                            child: Image.asset(
+                              'images/photo_2024-01-17_04-23-53-removebg-preview.png',
+                              width: 135.0,
+                              height: 230.0,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  color: primaryColor,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 10.0,
-                          top: 30.0,
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Hello $userName,',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18.0,
-                                fontFamily: primaryFont,
-                              ),
-                            ),
-                            const Text(
-                              'How are you feeling today ? ',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                  fontFamily: primaryFont,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Align(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 10,
-                          ),
-                          child: Image.asset(
-                            'images/photo_2024-01-17_04-23-53-removebg-preview.png',
-                            width: 140.0,
-                            height: 220.0,
-                          ),
-                        ),
-                      ),
-                    ],
+                ),
+                Positioned(
+                  top: 190,
+                  left: 30,
+                  child: MoodSelector(
+                    onSelected: widget.onMoodSelected,
+                    updateSelectedMood: _updateSelectedMood,
                   ),
                 ),
-              ),
-              Positioned(
-                top: 190,
-                left: 30,
-                child: MoodSelector(
-                  onSelected: widget.onMoodSelected,
-                  updateSelectedMood: _updateSelectedMood,
+                Positioned(
+                  top: 280,
+                  left: 20,
+                  // padding: const EdgeInsets.all(8.0),
+                  child: _labelText('Mood Insights'),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 290, right: 20, left: 20),
-                child: MoodGraph(
-                  moodData: {'currentDay': selectedMoodPercentage},
-                  selectedMoodPercentage: selectedMoodPercentage,
+                Padding(
+                  padding: const EdgeInsets.only(top: 320, right: 20, left: 20),
+                  child: MoodGraph(
+                    moodData: {'currentDay': selectedMoodPercentage},
+                    selectedMoodPercentage: selectedMoodPercentage,
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 470, right: 10, left: 10),
-                child: _buildFeatureList(),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 500, right: 10, left: 10),
+                  child: _buildFeatureList(),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -150,9 +150,9 @@ class _HOMEScreenState extends State<HOMEScreen> {
       child: Text(
         labelText,
         style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 18.0,
-          fontFamily: primaryFont,
+          fontWeight: FontWeight.w900,
+          fontSize: 17.0,
+          fontFamily: interFont,
           color: Color(0xff1F5D6B),
         ),
       ),
@@ -180,7 +180,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
             elevation: 5,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: primaryColor,
+            color: secodaryColor,
             child: Row(
               children: [
                 Padding(
@@ -191,22 +191,23 @@ class _HOMEScreenState extends State<HOMEScreen> {
                     width: 100,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 70.0),
+                Padding(
+                  padding: const EdgeInsets.only(top: 70.0),
                   child: Text(
                     'How was your Day ?',
                     style: TextStyle(
-                        fontFamily: primaryFont,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.white),
+                      fontFamily: interFont,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w800,
+                      color: fontGray,
+                    ),
                   ),
                 ),
               ],
             ),
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 15),
         _labelText('SELF TEST'),
         GestureDetector(
           onTap: () {
@@ -224,18 +225,18 @@ class _HOMEScreenState extends State<HOMEScreen> {
                   child: Text(
                     'Beck Depression Test',
                     style: TextStyle(
-                        fontFamily: primaryFont,
-                        fontSize: 18,
+                        fontFamily: interFont,
+                        fontSize: 17,
                         fontWeight: FontWeight.w800,
                         color: Colors.white),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                      left: 0, right: 6, top: 0, bottom: 0),
+                      left: 0, right: 3, top: 0, bottom: 0),
                   child: Image.asset(
                     'images/photo_2024-01-18_02-56-42-removebg-preview.png',
-                    width: 140,
+                    width: 120,
                     height: 160,
                   ),
                 ),
@@ -243,7 +244,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
             ),
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 15),
         _labelText('SELF CARE KIT'),
         GestureDetector(
           onTap: () {
@@ -253,7 +254,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
             elevation: 5,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: primaryColor,
+            color: secodaryColor,
             child: Row(
               children: [
                 Padding(
@@ -264,34 +265,37 @@ class _HOMEScreenState extends State<HOMEScreen> {
                     height: 150,
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 30.0, left: 30),
+                Padding(
+                  padding: const EdgeInsets.only(top: 30.0, left: 30),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         '100+',
                         style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w800,
-                            fontFamily: primaryFont,
-                            color: Colors.white),
+                          fontSize: 20,
+                          fontWeight: FontWeight.w800,
+                          fontFamily: interFont,
+                          color: fontGray,
+                        ),
                       ),
                       Text(
                         'Recommendations',
                         style: TextStyle(
-                            fontFamily: primaryFont,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                          fontFamily: interFont,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                          color: fontGray,
+                        ),
                       ),
                       Text(
                         'To Ease Your Mind',
                         style: TextStyle(
-                            fontFamily: primaryFont,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w800,
-                            color: Colors.white),
+                          fontFamily: interFont,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w800,
+                          color: fontGray,
+                        ),
                       ),
                     ],
                   ),
@@ -300,7 +304,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
             ),
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 15),
         _labelText('TIME KEEPER'),
         GestureDetector(
           onTap: () {
@@ -313,34 +317,37 @@ class _HOMEScreenState extends State<HOMEScreen> {
             color: primaryColor,
             child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, top: 5, bottom: 4),
-                  child: Image.asset(
-                    "images/photo_2024-01-18_05-46-33-removebg-preview.png",
-                    width: 100,
-                    height: 150,
-                  ),
-                ),
                 const Padding(
-                  padding: EdgeInsets.only(top: 30.0, left: 30),
+                  padding: EdgeInsets.only(top: 30.0, left: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Time Table Companion',
                         style: TextStyle(
-                            fontFamily: primaryFont,
-                            fontSize: 18,
+                            fontFamily: interFont,
+                            fontSize: 17,
                             fontWeight: FontWeight.w800,
                             color: Colors.white),
                       ),
                     ],
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, top: 5, bottom: 4),
+                  child: Image.asset(
+                    "images/photo_2024-01-18_05-46-33-removebg-preview.png",
+                    width: 90,
+                    height: 150,
+                  ),
+                ),
               ],
             ),
           ),
         ),
+        const SizedBox(
+          height: 5,
+        )
       ],
     );
   }

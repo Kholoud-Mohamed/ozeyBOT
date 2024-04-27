@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapfeature_project/helper/constants.dart';
 
 class HeadlineText extends StatelessWidget {
   final String text;
@@ -71,13 +72,8 @@ class RecommendationsScreen extends StatelessWidget {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      gradient: const LinearGradient(
-                        colors: [
-                          Color.fromARGB(255, 180, 218, 226),
-                          Color.fromARGB(255, 196, 224, 232),
-                          Color.fromARGB(255, 223, 233, 233),
-                          Colors.white,
-                        ],
+                      gradient: LinearGradient(
+                        colors: gradientcard,
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
@@ -145,13 +141,8 @@ class RecommendationsScreen extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      gradient: const LinearGradient(
-                        colors: [
-                          Color.fromARGB(255, 180, 218, 226),
-                          Color.fromARGB(255, 196, 224, 232),
-                          Color.fromARGB(255, 223, 233, 233),
-                          Colors.white,
-                        ],
+                      gradient: LinearGradient(
+                        colors: gradientcard,
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
@@ -215,13 +206,8 @@ class RecommendationsScreen extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      gradient: const LinearGradient(
-                        colors: [
-                          Color.fromARGB(255, 180, 218, 226),
-                          Color.fromARGB(255, 196, 224, 232),
-                          Color.fromARGB(255, 223, 233, 233),
-                          Colors.white,
-                        ],
+                      gradient: LinearGradient(
+                        colors: gradientcard,
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),

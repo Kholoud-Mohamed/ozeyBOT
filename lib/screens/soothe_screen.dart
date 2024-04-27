@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapfeature_project/helper/constants.dart';
 import 'package:mapfeature_project/widgets/customButton.dart';
 
 class sotheeScreen extends StatelessWidget {
@@ -8,14 +9,9 @@ class sotheeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 94, 162, 187),
-              Color.fromARGB(255, 234, 243, 243),
-              Color.fromARGB(255, 229, 235, 235),
-              Color.fromARGB(255, 198, 229, 230),
-            ],
+            colors: backgroundsoothe,
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -24,16 +20,15 @@ class sotheeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                "Hi , I'm Soothe",
-                style: TextStyle(
-                    fontSize: 25,
-                    fontFamily: 'Langar',
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xff1F5D6B)),
-              ),
+              Text("HI , I'm Ozey",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontFamily: AlegreyaFont,
+                    fontWeight: FontWeight.w900,
+                    color: labelColor,
+                  )),
               Image.asset(
-                'images/photo_2024-01-17_04-14-54-removebg-preview.png',
+                'images/photo_2024-01-17_04-14-54-removebg-preview.png', // Replace 'your_gif_file.gif' with the path to your GIF file
                 height: 300,
               ),
               // const SizedBox(

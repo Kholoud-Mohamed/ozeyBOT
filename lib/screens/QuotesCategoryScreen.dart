@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mapfeature_project/helper/constants.dart';
 import 'package:mapfeature_project/screens/QuoteScreen.dart';
 
 class QuotesCategoryScreen extends StatelessWidget {
@@ -504,13 +505,9 @@ class CardWidget extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              gradient: const LinearGradient(
-                colors: [
-                  Color.fromARGB(255, 159, 210, 222),
-                  Color.fromARGB(255, 196, 224, 232),
-                  Color.fromARGB(255, 223, 233, 233),
-                  Colors.white,
-                ], // Replace with your desired gradient colors
+              gradient: LinearGradient(
+                colors:
+                    backgroundsoothe, // Replace with your desired gradient colors
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
