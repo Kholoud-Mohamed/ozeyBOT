@@ -28,7 +28,7 @@ class sotheeScreen extends StatelessWidget {
                     color: labelColor,
                   )),
               Image.asset(
-                'images/photo_2024-01-17_04-14-54-removebg-preview.png', // Replace 'your_gif_file.gif' with the path to your GIF file
+                'images/photo_2024-01-17_04-14-54-removebg-preview.png',
                 height: 300,
               ),
               // const SizedBox(

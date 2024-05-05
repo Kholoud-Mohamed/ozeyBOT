@@ -65,8 +65,9 @@ class _LogInScreenState extends State<LogInScreen> {
                               child: Text(
                                 'Hello !',
                                 style: TextStyle(
+                                  fontWeight: FontWeight.w700,
                                   fontFamily: nunitoFont,
-                                  fontSize: 29,
+                                  fontSize: 25,
                                   color: Color.fromARGB(255, 128, 133, 134),
                                 ),
                               ),
@@ -74,8 +75,9 @@ class _LogInScreenState extends State<LogInScreen> {
                             Text(
                               'WELCOME BACK',
                               style: TextStyle(
+                                fontWeight: FontWeight.w700,
                                 fontFamily: nunitoFont,
-                                fontSize: 29,
+                                fontSize: 24,
                                 color: Color(0xff1F5D6B),
                               ),
                             ),
@@ -132,8 +134,9 @@ class _LogInScreenState extends State<LogInScreen> {
                           child: const Text(
                             'Forgot Password ? ',
                             style: TextStyle(
+                              fontWeight: FontWeight.w600,
                               fontFamily: nunitoFont,
-                              fontSize: 18,
+                              fontSize: 15,
                               color: Color(0xff1F5D6B),
                             ),
                           ),
@@ -166,6 +169,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             const Text(
                               "Don't have an account?",
                               style: TextStyle(
+                                fontWeight: FontWeight.w600,
                                 fontFamily: latoFont,
                                 color: Color.fromARGB(255, 136, 136, 136),
                               ),
@@ -177,6 +181,7 @@ class _LogInScreenState extends State<LogInScreen> {
                               child: const Text(
                                 ' Sign up',
                                 style: TextStyle(
+                                  fontWeight: FontWeight.w700,
                                   fontFamily: latoFont,
                                   color: Color(0xff1F5D6B),
                                 ),

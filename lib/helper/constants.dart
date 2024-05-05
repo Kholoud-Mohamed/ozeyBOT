@@ -32,5 +32,5 @@ Color fontGray = const Color(0xff636363);
 const String primaryFont = 'Langar';
 const String AlegreyaFont = 'Alegreya';
 const String interFont = 'Inter';
-const String nunitoFont = 'Inter';
+const String nunitoFont = 'Nunito Sans';
 const String latoFont = 'Lato';

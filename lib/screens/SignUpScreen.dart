@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mapfeature_project/NavigationBar.dart';
+import 'package:mapfeature_project/helper/constants.dart';
 import 'package:mapfeature_project/helper/show_snack_bar.dart';
 import 'package:mapfeature_project/moodTracer/sentiment.dart';
 import 'package:mapfeature_project/screens/OTP_Screen.dart';
@@ -64,8 +65,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: Text(
                                 'Welcome!',
                                 style: TextStyle(
-                                  fontFamily: 'Langar',
-                                  fontSize: 24,
+                                  fontFamily: nunitoFont,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 17,
                                   color: Color.fromARGB(255, 128, 133, 134),
                                 ),
                               ),
@@ -73,8 +75,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             Text(
                               'Create Your Account ',
                               style: TextStyle(
-                                fontFamily: 'Langar',
-                                fontSize: 25,
+                                fontFamily: nunitoFont,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 20,
                                 color: Color(0xff1F5D6B),
                               ),
                             ),
@@ -189,7 +192,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             const Text(
                               'Already have an account?',
                               style: TextStyle(
-                                  fontFamily: 'Langar',
+                                  fontFamily: latoFont,
+                                  fontWeight: FontWeight.w700,
                                   color: Color.fromARGB(255, 136, 136, 136)),
                             ),
                             GestureDetector(
@@ -199,7 +203,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               child: const Text(
                                 '  Login',
                                 style: TextStyle(
-                                  fontFamily: 'Langar',
+                                  fontWeight: FontWeight.w900,
+                                  fontFamily: latoFont,
                                   color: Color(0xff1F5D6B),
                                 ),
                               ),
