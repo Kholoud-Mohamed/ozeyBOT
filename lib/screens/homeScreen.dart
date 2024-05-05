@@ -100,7 +100,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
                       Text(
                         'Hello $userName,',
                         style: const TextStyle(
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w900,
                             fontSize: 18.0,
                             fontFamily: interFont, //inter
                             color: Colors.white),
@@ -108,7 +108,7 @@ class _HOMEScreenState extends State<HOMEScreen> {
                       const Text(
                         'How are you feeling today ? ',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w900,
                             fontSize: 13,
                             fontFamily: interFont, //inter
                             color: Colors.white),
@@ -116,8 +116,8 @@ class _HOMEScreenState extends State<HOMEScreen> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 70, left: 5),
+                const Padding(
+                  padding: EdgeInsets.only(top: 70, left: 5),
                   child: decoration(),
                 ),
                 Positioned(
@@ -142,7 +142,8 @@ class _HOMEScreenState extends State<HOMEScreen> {
                             //navigation
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 233, 240, 241),
+                            backgroundColor:
+                                const Color.fromARGB(255, 233, 240, 241),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 2),
                             textStyle: const TextStyle(fontSize: 16),
@@ -152,7 +153,11 @@ class _HOMEScreenState extends State<HOMEScreen> {
                           ),
                           child: Text(
                             'View Report',
-                            style: TextStyle(color: fontGray),
+                            style: TextStyle(
+                                color: fontGray,
+                                fontFamily: interFont,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w800),
                           ),
                         ),
                       ),
