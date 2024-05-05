@@ -59,15 +59,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(right: 205, top: 20),
+                              padding: EdgeInsets.only(right: 150, top: 20),
                               child: Text(
                                 'Welcome!',
                                 style: TextStyle(
                                   fontFamily: nunitoFont,
                                   fontWeight: FontWeight.w800,
-                                  fontSize: 17,
+                                  fontSize: 22,
                                   color: Color.fromARGB(255, 128, 133, 134),
                                 ),
                               ),
@@ -77,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               style: TextStyle(
                                 fontFamily: nunitoFont,
                                 fontWeight: FontWeight.w800,
-                                fontSize: 20,
+                                fontSize: 21,
                                 color: Color(0xff1F5D6B),
                               ),
                             ),
